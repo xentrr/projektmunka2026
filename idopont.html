@@ -5,13 +5,13 @@
   <title>FitHU</title>
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body onload="minmax()">
     <header>
   <nav class="navbar">
     <div class="logo"><img src="kepek/logo.png" alt="LOGO" class="logokep"></div>
     <ul class="nav-links">
       <li><a href="fooldal.html">Főoldal</a></li>
-      <li><a href="idopont.html">Időpontfoglalás</a></li>
+      <li><a href="idopont.html" class="navselected">Időpontfoglalás</a></li>
       <li><a href="kaloria.html">Kalória Calculator</a></li>
     </ul>
   </nav>
@@ -19,20 +19,18 @@
 <main>
     <form>
       <small>Név:</small>
-      <input type="text" id="name">
+      <input type="text" id="name" required>
       <small>Email:</small>
-      <input type="text" id="email"> 
+      <input type="text" id="email" required> 
       <input
       type="date"
       id="start"
       name="foglalas"
-      value="2026-02-20"
-      min="2026-02-20"
-      max="2026-12-31"/>
+      max="2026-12-31" required/>
       <input
       type="time"
       id="ipont"
-      name="idopont"
+      name="time"
       min="08:00"
       max="20:00"
       required />
@@ -49,6 +47,16 @@
         publicKey: "E9UPzdR2DRkQTvxNk",
       });
    })();
+   function minmax(){
+    const now = new Date();
+    const datum =
+      now.getFullYear() + "-" +
+      (now.getMonth() + 1).toString().padStart(2, '0') + "-" +
+      now.getDate().toString().padStart(2, '0');
+
+    document.querySelector("#start").min = datum
+    document.querySelector("#start").value = datum
+   }
    function send(){
         let nev = document.querySelector("#name").value
         let mail = document.querySelector("#email").value
@@ -69,6 +77,7 @@
         });
         
    }
+   
    
 </script>
 </html>
