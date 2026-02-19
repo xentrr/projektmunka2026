@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kalória kalkulátor – FitASS</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+ <header>
+  <nav class="navbar">
+    <div class="logo"><img src="kepek/logo.png" alt="LOGO" class="logokep"></div>
+    <ul class="nav-links">
+      <li><a href="fooldal.html">Főoldal</a></li>
+      <li><a href="idopont.html">Időpontfoglalás</a></li>
+      <li><a href="kaloria.html">Kalória Calculator</a></li>
+    </ul>
+  </nav>
+</header>
+<main>
+
+  <section class="calculator">
+    <h1>Kalória kalkulátor</h1>
+    <p>Számold ki a napi kalóriaszükségleted egyszerűen.</p>
+
+    <form id="calorieForm" novalidate>
+
+      <div class="form-group">
+        <label>Nem</label>
+        <select id="gender" required>
+          <option value="">Válassz</option>
+          <option value="male">Férfi</option>
+          <option value="female">Nő</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Életkor (év)</label>
+        <input type="number" id="age" min="1" max="100" required>
+      </div>
+
+      <div class="form-group">
+        <label>Magasság (cm)</label>
+        <input type="number" id="height" min="50" max="250" required>
+      </div>
+
+      <div class="form-group">
+        <label>Súly (kg)</label>
+        <input type="number" id="weight" min="20" max="300" required>
+      </div>
+
+      <div class="form-group">
+        <label>Aktivitási szint</label>
+        <select id="activity" required>
+          <option value="1.2">Ülő életmód</option>
+          <option value="1.375">Könnyű mozgás (1–3x / hét)</option>
+          <option value="1.55">Közepes (3–5x / hét)</option>
+          <option value="1.725">Aktív (6–7x / hét)</option>
+          <option value="1.9">Nagyon aktív</option>
+        </select>
+      </div>
+
+      <button type="submit" class="btn-primary">Számolás</button>
+    </form>
+
+    <div id="result" class="result-box"></div>
+
+  </section>
+
+</main>
+
+<script>
+document.getElementById("calorieForm").addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  const gender = document.getElementById("gender").value;
+  const age = Number(document.getElementById("age").value);
+  const height = Number(document.getElementById("height").value);
+  const weight = Number(document.getElementById("weight").value);
+  const activity = Number(document.getElementById("activity").value);
+  const resultBox = document.getElementById("result");
+
+
+  if (
+    !gender ||
+    age < 1 || age > 100 ||
+    height < 50 || height > 250 ||
+    weight < 20 || weight > 300
+  ) {
+    resultBox.innerHTML = `
+      <p style="color:red;font-weight:bold;">
+        Kérlek, valós adatokat adj meg minden mezőben!
+      </p>
+    `;
+    resultBox.style.display = "block";
+    return;
+  }
+
+
+  let bmr;
+  if (gender === "male") {
+    bmr = 10 * weight + 6.25 * height - 5 * age + 5;
+  } else {
+    bmr = 10 * weight + 6.25 * height - 5 * age - 161;
+  }
+
+  const calories = Math.round(bmr * activity);
+
+
+  resultBox.innerHTML = `
+    <h3>Napi kalóriaszükségleted:</h3>
+    <p><strong>${calories} kcal</strong></p>
+    <small>Ez az érték a testsúlyod megtartásához szükséges.</small>
+  `;
+  resultBox.style.display = "block";
+});
+</script>
+
+</body>
+</html>
