@@ -384,6 +384,12 @@ footer {
     margin: 0 auto;
     display: block;
   }
+  .ismerteto{
+    display: none;
+  }
+  .minden{
+    display: block;
+  }
 
   /* Features mobil */
   .features {
