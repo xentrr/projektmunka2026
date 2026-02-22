@@ -10,17 +10,33 @@
  <header>
   <nav class="navbar">
     <div class="logo"><img src="kepek/logo.png" alt="LOGO" class="logokep"></div>
-    <ul class="nav-links">
-      <li><a href="fooldal.html">Főoldal</a></li>
-      <li><a href="idopont.html">Időpontfoglalás</a></li>
-      <li><a href="kaloria.html" class="navselected">Kalória Calculator</a></li>
-    </ul>
+    <div class="nav-links">
+      <a href="fooldal.html">Főoldal</a>
+      <a href="idopont.html">Időpontfoglalás</a>
+      <a href="kaloria.html" class="navselected">Kalória Calculator</a>
+    </div>
   </nav>
 </header>
 <main>
-
+ <section class="minden">
+  <section class="ismerteto">
+    <h1>Miért jó a kalóriaszámolás?</h1>
+    <p>A kalóriaszámolás segít tudatosabbá válni az étkezésben, 
+      és könnyebben elérni a kitűzött célokat – legyen szó fogyásról,
+       izomtömeg-növelésről vagy testsúlytartásról. Pontos képet ad arról,
+        mennyi energiát viszünk be naponta, így segít megtalálni az egyensúlyt anélkül, 
+        hogy le kellene mondanunk a kedvenc ételeinkről. Egyszerű,
+         átlátható módszer a hosszú távon fenntartható életmódhoz.</p>
+         <div class="info-image">
+        
+         <img  src="kepek/kaloriakep.jpg" alt="kaloriakep">
+         <div class="melt"></div>
+         </div>
+  </section>
+ 
   <section class="calculator">
     <h1>Kalória kalkulátor</h1>
+    
     <p>Számold ki a napi kalóriaszükségleted egyszerűen.</p>
 
     <form id="calorieForm" novalidate>
@@ -31,6 +47,7 @@
           <option value="">Válassz</option>
           <option value="male">Férfi</option>
           <option value="female">Nő</option>
+          <option value="other">Egyéb</option>
         </select>
       </div>
 
@@ -66,7 +83,7 @@
     <div id="result" class="result-box"></div>
 
   </section>
-
+  </section>
 </main>
 
 <script>
