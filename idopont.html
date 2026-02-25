@@ -19,24 +19,44 @@
 </header>
 <main>
     <form>
-      <small>Név:</small>
-      <input type="text" id="name" required>
-      <small>Email:</small>
-      <input type="text" id="email" required> 
-      <input
-      type="date"
-      id="start"
-      name="foglalas"
-      max="2026-12-31" required/>
-      <input
-      type="time"
-      id="ipont"
-      name="time"
-      min="08:00"
-      max="20:00"
-      required />
-      <input type="button" value="Beküldés" onclick="send()">
+      <section class="form">
+        <div class="headergym">
+          <img src="kepek/headergym.jpg" alt="headergym">
+          <h1>Időpontfoglalás</h1>
+        </div>
+        <div class="contact">
+
+          <div class="input-group">
+            <label for="name">Név</label>
+            <input type="text" id="name" required>
+          </div>
+        
+          <div class="input-group">
+            <label for="start">Dátum</label>
+            <input type="date" id="start" name="foglalas" max="2026-12-31" required>
+          </div>
+        
+          <div class="input-group">
+            <label for="email">Email</label>
+            <input type="text" id="email" required>
+          </div>
+        
+          <div class="input-group">
+            <label for="ipont">Időpont</label>
+            <input type="time" id="ipont" name="time" min="08:00" max="20:00" required>
+          </div>
+
+        </div>
+        <div class="bekuldes">
+          <input type="button" value="Beküldés" onclick="send()">
+        </div>
+        
+        
+      </section>
+      
+      
     </form>
+    
 </main>
 </body>
 <script type="text/javascript"
@@ -52,8 +72,8 @@
     const now = new Date();
     const datum =
       now.getFullYear() + "-" +
-      (now.getMonth() + 1).toString().padStart(2, '0') + "-" +
-      now.getDate().toString().padStart(2, '0');
+      (now.getMonth()+1).toString().padStart(2, '0') + "-" +
+      (now.getDate()+1).toString().padStart(2, '0');
 
     document.querySelector("#start").min = datum
     document.querySelector("#start").value = datum
@@ -64,6 +84,10 @@
         let datum = document.querySelector("#start").value
         let ido = document.querySelector("#ipont").value
 
+        if(!nev || !mail || !datum || !ido){
+          alert("Kérem töltse ki az összes mezőt!")
+          return
+        }
         emailjs.send("service_dnl65g8","template_xsrxvj9",{
             name: nev,
             email: mail,
